@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Restaurant Website</title>
+
+    <!-- font awesome cdn link  -->
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my menu.html">
+
+</head>
+<body>
+
+    <!-- header section starts  -->
+
+    <header>
+
+        <p class="logo">Foodie</p>
+
+
+
+        <nav class="navbar">
+            <a href="home.html">home</a>
+            <a href="My menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="review.html">review</a>
+            <a href="order.html">order</a>
+            <a href="registration.html">LogIn</a>
+        </nav>
+
+    </header>
+
+    <!-- header section ends -->
+    <!-- home section starts  -->
+
+    <link rel="stylesheet" href="style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">
+                    <span>Login</span> Form
+                </div>
+                <div class="title signup">
+                    <span>Signup</span> Form
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="slide-controls">
+                    <input type="radio" name="slide" id="login" checked>
+                    <input type="radio" name="slide" id="signup">
+                    <label for="login" class="slide login">Login</label>
+                    <label for="signup" class="slide signup">Signup</label>
+                    <div class="slider-tab"></div>
+                </div>
+
+                <!-- login page -->
+
+                <div class="form-inner">
+                    <form action="#" class="login" method="post" onsubmit="return (log_validation());" >
+                        <div class="field">
+                            <input type="text" id="l_email" placeholder="Email Address">
+							<span id="l_mail" class="text-danger font-weight-bold"></span>
+                        </div>
+
+                        <div class="field">
+                            <input type="password" id="l_pasw" placeholder="Password">
+							<span id="l_psw" class="text-danger font-weight-bold"></span>
+
+                        </div>
+                        <div class="pass-link">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <div class="field btn">
+                            <div class="btn-layer"></div>
+                            <input type="submit" value="Login">
+                        </div>
+                        <div class="signup-link">
+                            Not a member? <a href="">Signup now</a>
+                        </div>
+                    </form>
+
+                    <!-- signup page -->
+
+                    <form action="#" class="signup" method="post" onsubmit="return (validation());">
+                        <div class="field">
+                            <input type="text" id="name" placeholder="Name" >
+                            <span id="nameerror" class="text-danger font-weight-bold"></span>
+
+                        </div>
+                        <div class="field">
+                            <input type="text" id="email" placeholder="Email Address" >
+                            <span id="mail" class="text-danger font-weight-bold"></span>
+                            
+
+                        </div>
+                        <div class="field">
+                            <input type="password" id="psw" placeholder="Password" >
+                            <span id="pass" class="text-danger font-color-red"></span>
+                            
+
+                        </div>
+                        <div class="field">
+                            <input type="Mobile Number" id="num" placeholder="Mobile Number">
+                            <span id="numb" class="text-danger font-weight-bold"></span>
+                            
+
+                        </div>
+                        <div class="field">
+                            <input type="Address" id="add" placeholder="Address" >
+                            <span id="ad" class="text-danger font-weight-bold"></span>
+                            
+
+                        </div>
+                        <div class="field btn">
+                            <div class="btn-layer"></div>
+                            <input type="submit" value="Signup">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            function log_validation(){
+            var email=document.getElementById('l_email').value;
+            var psw=document.getElementById('l_pasw').value;
+            var mail= localStorage.getItem("email", email);
+			var pass= localStorage.getItem("password", psw);
+				
+			
+
+             if ((email==mail) && (psw==pass) )
+			 {
+            console.log("abcdef");
+			document.getElementById('l_mail').innerHTML = "";
+			
+			} 
+		  else {
+			document.getElementById('l_mail').innerHTML = "**Email-id or Password is not correct";
+			l_mail.style.color="#ff0000";
+             return false;
+            }
+			console.log("reached here");
+			window.location.href = "file:///C:/Users/pavil/Desktop/Front%20End%20Project/Restaurant%20Project/order.html#";
+			alert("Thank You");
+			
+            } 
+
+            function validation() {
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var psw = document.getElementById('psw').value;
+                var address = document.getElementById('add').value;
+                var number = document.getElementById('num').value;
+				
+				var namecheck = /^[A-Za-z. ]{3,20}$/;
+                var emailcheck = /^[A-Za-z0-9_.-]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
+                var pswcheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9@#$%^&*]{8,15}$/;
+                var numcheck = /^\+?1\d{3}\d{3}\d{4}$/;
+                var addcheck = /^[a-zA-Z0-9\s,'-]*$/;
+
+				if (name == null || name == "") {
+                    document.getElementById('nameerror').innerHTML = "**name cannot be Empty";
+                    nameerror.style.color = "#ff0000";
+                    return false;
+                }
+               else if (namecheck.test(name)) {
+                    document.getElementById('nameerror').innerHTML = "Valid Name";
+                    nameerror.style.color = "#00ff00";
+									
+					localStorage.setItem("name", name);
+                } 
+				else {
+                    document.getElementById('nameerror').innerHTML = "** No digits and special characters";
+                    nameerror.style.color = "#ff0000";
+                    return false;
+                }
+				if (email == null || email == "") {
+                    document.getElementById('mail').innerHTML = "**email cannot be Empty";
+                    mail.style.color = "#ff0000";
+                    return false;
+                }
+                else if (emailcheck.test(email)) {
+                    document.getElementById('mail').innerHTML = "Valid Email Address";
+                    mail.style.color = "#00ff00";
+					localStorage.setItem("email", email);
+                } 
+				else {
+                    document.getElementById('mail').innerHTML = "**Email-id is invalid";
+                    mail.style.color = "#ff0000";
+                    return false;
+                }
+				if (psw == null || psw == "") {
+                    document.getElementById('pass').innerHTML = "**email cannot be Empty";
+                    pass.style.color = "#ff0000";
+                    return false;
+                }
+                else if (pswcheck.test(psw)) {
+                    document.getElementById('pass').innerHTML = "Valid Password";
+                    pass.style.color = "#00ff00";
+					console.log("name sis fjkdsa");
+					localStorage.setItem("password", psw);	
+
+                } else {
+                    document.getElementById('pass').innerHTML = "**Should contain digits and special characters";
+                    pass.style.color = "#ff0000";
+                    return false;
+                }
+				if (number == null || number == "") {
+                    document.getElementById('ad').innerHTML = "**number cannot be Empty";
+                    ad.style.color = "#ff0000";
+                    return false;
+                }
+                else if (numcheck.test(number)) {
+                    document.getElementById('numb').innerHTML = "Valid Number";
+                    numb.style.color = "#00ff00";
+					localStorage.setItem("number", number);
+
+                } else {
+                    document.getElementById('numb').innerHTML = "**Invalid Number";
+                    numb.style.color = "#ff0000";
+                    return false;
+                }
+                if (address == null || address == "") {
+                    document.getElementById('ad').innerHTML = "**Address cannot be Empty";
+                    ad.style.color = "#ff0000";
+                    return false;
+                }
+                else if (addcheck.test(address)) {
+                    document.getElementById('ad').innerHTML = "Valid Address";
+                    ad.style.color = "#00ff00";
+									
+
+                } else {
+                    document.getElementById('ad').innerHTML = "**Invalid Address";
+                    ad.style.color = "#ff0000";
+                    return false;
+                }
+				
+                alert("Thank you for your signup");
+				}
+				
+				
+            
+            const loginText = document.querySelector(".title-text .login");
+            const loginForm = document.querySelector("form.login");
+            const loginBtn = document.querySelector("label.login");
+            const signupBtn = document.querySelector("label.signup");
+            const signupLink = document.querySelector("form .signup-link a");
+            signupBtn.onclick = (() => {
+                loginForm.style.marginLeft = "-50%";
+                loginText.style.marginLeft = "-50%";
+            });
+            loginBtn.onclick = (() => {
+                loginForm.style.marginLeft = "0%";
+                loginText.style.marginLeft = "0%";
+            });
+            signupLink.onclick = (() => {
+                signupBtn.click();
+                return false;
+            });
+			
+        </script>
+    </body>
+</html>
+
+</body>
+</html>
